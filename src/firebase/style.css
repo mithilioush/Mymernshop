@@ -1,0 +1,81 @@
+
+
+/* SVG clock UI */
+@import "compass";
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900|Dosis:300,400,600,700,800|Droid+Sans:400,700|Lato:300,400,700,900|PT+Sans:400,700|Ubuntu:300,400,500,700|Open+Sans:400,300,600,700|Roboto:400,300,500,700,900|Roboto+Condensed:400,300,700|Open+Sans+Condensed:300,700|Play:400,700|Maven+Pro:400,500,700,900&subset=latin,latin-ext);
+
+/* #1bbccb: #1bbccb; // Blue
+//#1bbccb: #de9235; // Orange
+//#215769: darken(#1bbccb, 25%);
+#215769: #215769;
+
+ #2a2a2a: #2a2a2a;
+White: White;
+
+"Open Sans": "Open Sans";
+"Source Sans Pro": "Source Sans Pro"; */
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #222;
+	overflow: hidden;
+}
+
+svg {
+	position: absolute;
+	width: 800px;
+	height: 480px;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+
+	background-image:linear-gradient(Black 60%, #215769 100%);
+
+	border-radius:10px;
+	box-shadow: 0 0 50px rgba(Black, 0.8);
+}
+
+.bgDot {
+	stroke: none;
+	fill: #215769;
+}
+
+.clockCircle {
+	fill: none;
+	stroke:  #2a2a2a;
+}
+
+.clockArc {
+	fill: none;
+	stroke: #1bbccb;
+}
+
+.clockDot {
+	fill: lighten(#1bbccb, 50%);
+}
+
+.caption {
+	font-family: "Source Sans Pro";
+	font-weight: 300;
+	fill: White;
+}
+
+.dayText {
+	font-size: 1.7rem;
+}
+
+.dateText {
+	font-size: 2.5rem;
+	font-weight: 400;
+}
+
+.timeText {
+	font-family: "Open Sans";
+	font-size: 5rem;
+	font-weight: 600;
+	fill: White;
+}

@@ -1,25 +1,63 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import setCurrentUser from './redux/user/user.action'
+import { auth, createUserProfileDoc } from './firebase/firebase.utils';
+
+import SignIn from './pages/sign-in-sign-up/sign-in-sign-up.component';
+import Header from './header/header.component';
+import HomePage from "./pages/homepage/HomePage.component";
+import ShopPage from "./pages/shoppage/shopPage.component";
+import CheckOut from './pages/checkout/checkoutpage.component';
+
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+  unsubscribe = null;
+  componentDidMount() {
+    const { setCurrentUser } = this.props;
+    this.unsubscribe = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDoc(userAuth)
+        userRef.onSnapshot(snaphhot => {
+          setCurrentUser({
+            id: snaphhot.id,
+            ...snaphhot.data()
+          })
+        })
+      }
+      setCurrentUser(userAuth);
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignIn />)} />
+          <Route exact path='/checkout' component={CheckOut} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+})
+
+const mapDispacthToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispacthToProps)(App);
