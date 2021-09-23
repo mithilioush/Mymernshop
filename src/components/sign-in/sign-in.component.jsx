@@ -38,8 +38,7 @@ class SignIn extends Component {
                     <InputField name='email' type='email' handleChange={
                         this.handleChange
                     }
-                        label="Email"
-                        value={this.state.email}
+                        label="Email" value={this.state.email}
                         required />
 
                     <InputField name='password' type='password' handleChange={
