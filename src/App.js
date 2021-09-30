@@ -1,9 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import setCurrentUser from './redux/user/user.action'
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
+
+import { selectCurrentUser } from './redux/user/user-selector';
 
 import SignIn from './pages/sign-in-sign-up/sign-in-sign-up.component';
 import Header from './header/header.component';
@@ -31,6 +34,8 @@ class App extends React.Component {
         })
       }
       setCurrentUser(userAuth);
+      // addCollectionAndDocument('collections', collectionArray.map(({ title, items }) => ({ title, items })));
+
     });
   }
 
@@ -52,8 +57,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispacthToProps = dispatch => ({
