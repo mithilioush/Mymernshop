@@ -15,7 +15,7 @@ class ShopPage extends Component {
 
   render() {
     const { match } = this.props;
-    return (<div className='shop=page' >
+    return (<div className='shop-page' >
       <Route exact path={`${match.path}`} component={CollectionsOverviewContainter} />
       <Route path={`${match.path}/:collectionId`} component={CollectionContainer} />
     </div>)

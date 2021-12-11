@@ -24,3 +24,17 @@
     }
   }
 }
+
+.options-container {
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+    background-color: aliceblue;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto !important;
+    z-index: 100000;
+  }
+}

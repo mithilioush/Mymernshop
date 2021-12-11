@@ -21,7 +21,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
         <Link className='logo-container' to='/'>
             <Logo className='logo' />
         </Link>
-        <div className="options">
+        <div className="options options-container">
             <Link className="option" to='/shop'>SHOP</Link>
             <Link className="option" to='/contact'>CONTACT</Link>
             <Link className="option" to='/about'>ABOUT</Link>

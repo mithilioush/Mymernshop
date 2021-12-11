@@ -3,4 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+  }
 }
