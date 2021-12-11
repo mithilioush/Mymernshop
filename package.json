@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "engines": {
-    "node": "14.18.1",
-    "npm": "8.0.0"
-  },
+  
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
